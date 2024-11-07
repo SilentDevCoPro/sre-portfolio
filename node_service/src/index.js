@@ -1,5 +1,5 @@
 const app = require('express')();
-const port = 8080;
+const port = 80;
 const promClient = require('prom-client');
 
 //Creates histogram metric, histogram selected as they are excellent for response durations

@@ -12,3 +12,21 @@
 - Minikube Installed
 
 ## Setup Guide
+Build images locally
+
+`docker build -t 'image-name .`
+
+### Minkube
+`kubectl create namespace sre-challenge`
+
+`minikube start --driver=docker`
+
+`minikube docker-env`
+
+This next command minikube should give you, it will state "To point your shell to minikube's docker-daemon, run:"
+
+` & minikube -p minikube docker-env --shell powershell | Invoke-Expression`
+
+Now you should be able to push your images to minikube
+
+`minikube image load node-api:latest`
