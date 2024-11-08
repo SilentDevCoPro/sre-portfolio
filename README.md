@@ -2,23 +2,11 @@
 
 ## Table of Contents
 ***
-- [Services](#Services)
-- [Requirements](#Requirements)
-- [Cluster Creation Overview](#Cluster Creation Overview)
-- [Minkube/Docker](#Minkube/Docker)
-- [Service Deployment](#Service Deployment)
-- [Testing/Using Services](#Testing/Using Services)
-
-
-
-## Project Outline
-***
-
-### Services:
-***
-- Node API
-- Redis Cache
-- Prometheus Monitoring
+- [Requirements](#requirements)
+- [Cluster Creation Overview](#cluster-creation-overview)
+- [Minkube/Docker](#minkubedocker)
+- [Service Deployment](#service-deployment)
+- [Testing/Using Services](#testing-using-services)
 
 ## Requirements
 ***
@@ -28,6 +16,11 @@
 
 ## Cluster Creation Overview
 ***
+The idea of this cluster is to demonstrate my knowledge of k8s infrastructure and deployment of services.
+This demo shows:
+- Simple Nodejs API service which has a /sweet-as-bro endpoint and a /metrics endpoint
+- Prometheus to scrape /metrics endpoint, collecting the duration of the /sweet-as-bro response time. 
+- Redis Cache which the Node API can Hit or Miss when the /sweet-as-bro endpoint is requested.
 
 
 ## Minkube/Docker
@@ -35,20 +28,23 @@
 The following steps in Minikube/Docker are only required because this setup has only been tested using a local Docker 
 image registry.
 
-Create the namespace: `kubectl create namespace sre-challenge`
+``` 
+# Create the namespace: 
+kubectl create namespace sre-challenge
 
-Use Docker Driver: `minikube start --driver=docker`
+# Telling Minikube to use the Docker Driver: 
+minikube start --driver=docker
 
-Use Docker environment from Minikube, must be done before building the image: `minikube docker-env`
+# Use Docker environment from Minikube
+minikube docker-env
 
-This next command minikube should give you, it will state "To point your shell to minikube's Docker Daemon, it must be run every
-time your session is closed."
-
-` & minikube -p minikube docker-env --shell powershell | Invoke-Expression`
+# This next command minikube should give you, it will state "To point your shell to minikube's Docker Daemon, 
+# it must be run every time you start a new terminal session"
+& minikube -p minikube docker-env --shell powershell | Invoke-Expression
 
 Now you can build the images and using the Minikube Docker Daemon
-
-`docker build -t 'image-name .`
+docker build -t 'image-name .
+```
 
 ## Service Deployment
 ***
@@ -78,7 +74,7 @@ helm install my-redis bitnami/redis -n sre-challenge
 helm install node-api chart/
 ```
 
-## Testing/Using Services
+## Testing Using Services
 ***
 Once all services are deployed, you can now see some data by doing the following:
 
