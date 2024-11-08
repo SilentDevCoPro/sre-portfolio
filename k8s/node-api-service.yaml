@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: node-api-service
   namespace: sre-challenge
+  labels:
+    app: node-api
 spec:
   selector:
     app: node-api

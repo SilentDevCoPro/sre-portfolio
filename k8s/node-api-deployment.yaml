@@ -20,4 +20,4 @@ spec:
           image: node-api:latest
           imagePullPolicy: Never
           ports:
-            - containerPort: 80
+            - containerPort: 8080
