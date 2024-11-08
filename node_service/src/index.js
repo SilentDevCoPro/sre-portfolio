@@ -1,6 +1,7 @@
 const app = require('express')();
-const port = 8080;
 const promClient = require('prom-client');
+const redis = require('redis');
+const port = process.env.NODE_API_PORT;
 
 //Creates histogram metric, histogram selected as they are excellent for response durations
 const httpRequestDurationSeconds = new promClient.Histogram({
@@ -9,6 +10,41 @@ const httpRequestDurationSeconds = new promClient.Histogram({
     labelNames: ['method', 'route', 'status_code'],
     buckets: [0.0005, 0.005, 0.01, 0.025, 0.05, 0.1, 0.5, 1, 5]
 });
+
+// Redis client connection
+const client = redis.createClient({
+    socket: {
+        host: process.env.REDIS_HOST,
+        port: process.env.REDIS_PORT,
+    },
+    password: process.env.REDIS_PASSWORD,
+});
+
+client.on('connect', () => {
+    global.console.log("connected");
+});
+
+client.on('error', err => {
+    global.console.log(err.message)
+});
+
+
+// Connect to Redis
+(async () => {
+    try {
+        await client.connect();
+        console.log('Connected to Redis');
+
+        // Demo that we are talking to Redis
+        await client.set('key', 'value');
+
+        // Example of cache hit
+        const value = await client.get('key');
+        console.log(`Retrieved value from Redis: ${value}`);
+    } catch (err) {
+        console.error('Error connecting to Redis:', err);
+    }
+})();
 
 //Middleware to measure request duration of an Express transaction
 app.use((req, res, next) => {
