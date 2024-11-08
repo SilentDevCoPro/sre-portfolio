@@ -19,5 +19,7 @@ for timing the API calls response time.
 Getting images into Minikube is a pain in the backside, I have documented the process so it is easier in the future.
 
 ### #4 Challenge
+Understanding that the Prometheus service monitor was selecting based on service such as node port/loadbalancer,
+got stuck for a while until I understood that it was looking for the label in my loadbalancer service.
 
 ### #5 Challenge
