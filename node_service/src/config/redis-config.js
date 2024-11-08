@@ -17,7 +17,6 @@ client.on('error', err => {
     global.console.log(err.message)
 });
 
-
 // Connect to Redis
 (async () => {
     try {
