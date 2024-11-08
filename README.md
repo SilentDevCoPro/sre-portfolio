@@ -30,3 +30,7 @@ This next command minikube should give you, it will state "To point your shell t
 Now you should be able to push your images to minikube
 
 `minikube image load node-api:latest`
+
+To access the node-api from the loadbalancer:
+
+`minikube service node-api-service -n sre-challenge`
