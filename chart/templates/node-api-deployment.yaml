@@ -21,13 +21,10 @@ spec:
           imagePullPolicy: Never
           ports:
             - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: node-api-config
           env:
-            - name: NODE_API_PORT
-              value: "8080"
-            - name: REDIS_HOST
-              value: "my-redis-master"
-            - name: REDIS_PORT
-              value: "6379"
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
