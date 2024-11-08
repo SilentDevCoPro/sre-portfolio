@@ -56,3 +56,8 @@ Access the services once added
 Simple query to show the metrics being scraped
 
 `http_request_duration_seconds_bucket`
+
+### Redis
+`helm repo add bitnami https://charts.bitnami.com/bitnami`
+
+`helm install my-redis bitnami/redis -n sre-challenge`
