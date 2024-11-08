@@ -34,3 +34,14 @@ Now you should be able to push your images to minikube
 To access the node-api from the loadbalancer:
 
 `minikube service node-api-service -n sre-challenge`
+
+### Prometheus
+Add repo and update
+
+`helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update`
+
+Install into k8s cluster
+
+`helm install prometheus prometheus-community/kube-prometheus-stack -f values.yaml --namespace sre-challenge
+`

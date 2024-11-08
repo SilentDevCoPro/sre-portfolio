@@ -16,6 +16,7 @@ scraping was going to happen. Using a "Middleware" function was not something I 
 for timing the API calls response time.
 
 ### #3 Challenge
+Getting images into Minikube is a pain in the backside, I have documented the process so it is easier in the future.
 
 ### #4 Challenge
 

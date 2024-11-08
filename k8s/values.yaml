@@ -1,0 +1,21 @@
+global:
+  namespaceOverride: sre-challenge
+
+prometheusOperator:
+  namespaces:
+    releaseNamespace: true
+    additional:
+      - sre-challenge
+
+prometheus:
+  namespaceOverride: sre-challenge
+
+grafana:
+  namespaceOverride: sre-challenge
+  adminPassword: "admin"
+
+#Disabled as it is outside of project spec
+alertmanager:
+  enabled: false
+
+
