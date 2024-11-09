@@ -51,7 +51,6 @@ minikube addons enable metrics-server
 **Once you have:**
 - minikube cluster running
 - node-api image built
-- sre-challenge namespace 
 
 You can create the services with the following steps:
 ```
@@ -94,8 +93,8 @@ minikube service grafana-external -n sre-challenge
 # Access to the node-api endpoint use /sweet-as-bro or /metrics
 minikube service node-api-service -n sre-challenge
 
-# To test autoscaling, you can install stress into a pod once you exec into it. After stress has run for a while the
-# deploy should scale out
+# To test autoscaling, you can install stress into a pod once you exec into it
+# After stress has run for a while the deploy should scale out
 kubectl exec -it <pod-name> -n sre-challenge -- /bin/sh
 apt update
 apt install stress
