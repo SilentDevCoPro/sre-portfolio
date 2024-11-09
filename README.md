@@ -5,7 +5,7 @@
 - [Requirements](#requirements)
 - [Overview](#overview)
 - [Minkube/Docker](#minkubedocker)
-- [Service Deployment](#deployment-of-services)
+- [Deployment of Services](#deployment-of-services)
 - [Testing Services](#testing-services)
 
 ## Requirements
