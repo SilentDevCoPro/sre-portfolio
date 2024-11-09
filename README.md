@@ -42,8 +42,11 @@ minikube docker-env
 # it must be run every time you start a new terminal session"
 & minikube -p minikube docker-env --shell powershell | Invoke-Expression
 
-Now you can build the images and using the Minikube Docker Daemon
+Now you can build the images and using the Minikube Docker Daemon located in /node_service directory
 docker build -t 'image-name .
+
+# If you want Auto Scaling to work enable metrics server
+minikube addons enable metrics-server
 ```
 
 ## Service Deployment
@@ -83,11 +86,19 @@ Once all services are deployed, you can now see some data by doing the following
 minikube service prometheus-external -n sre-challenge
 
 # Simple query to show the metrics being scraped on Prometheus
-`http_request_duration_seconds_bucket`
+http_request_duration_seconds_bucket
 
 # This will give you access to Grafana dashboard
 minikube service grafana-external -n sre-challenge`
 
 # This will give you access to the node-api endpoint use /sweet-as-bro or /metrics
 minikube service node-api-service -n sre-challenge
+
+# To test autoscaling you can install stress into a pod once you exec into it, after the stress has run for a while the
+# deploy should scale out by +1
+kubectl exec -it <pod-name> -- /bash/sh
+apt update
+apt install stress
+stress --cpu 4 --io 2 --vm 2 --vm-bytes 512M
+
 ```

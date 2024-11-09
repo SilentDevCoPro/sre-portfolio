@@ -21,6 +21,11 @@ spec:
           imagePullPolicy: Never
           ports:
             - containerPort: 8080
+          resources:
+            requests:
+              cpu: "100m"
+            limits:
+              cpu: "500m"
           envFrom:
             - configMapRef:
                 name: node-api-config
