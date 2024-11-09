@@ -3,10 +3,10 @@
 ## Table of Contents
 ***
 - [Requirements](#requirements)
-- [Cluster Creation Overview](#cluster-creation-overview)
+- [Overview](#overview)
 - [Minkube/Docker](#minkubedocker)
-- [Service Deployment](#service-deployment)
-- [Testing/Using Services](#testing-using-services)
+- [Service Deployment](#deployment-of-services)
+- [Testing Services](#testing-services)
 
 ## Requirements
 ***
@@ -14,7 +14,7 @@
 - Minikube installed
 - Helm installed
 
-## Cluster Creation Overview
+## Overview
 ***
 The idea of this cluster is to demonstrate my knowledge of k8s infrastructure and deployment of services.
 This demo shows:
@@ -49,7 +49,7 @@ docker build -t 'image-name .
 minikube addons enable metrics-server
 ```
 
-## Services Deployment
+## Deployment of Services
 ***
 **Once you have:**
 - minikube cluster running
