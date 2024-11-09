@@ -59,7 +59,7 @@ minikube addons enable metrics-server
 You can create the services.
 ```
 # Step 1: Add the Prometheus repo to helm
-helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts 
 
 # Step 2: Add the Redis repo to helm
 helm repo add bitnami https://charts.bitnami.com/bitnami
@@ -68,13 +68,13 @@ helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo update
 
 # Step 4: Deploys Prometheus into cluster, values.yaml located in root directory of project
-helm install prometheus prometheus-community/kube-prometheus-stack -f values.yaml --namespace sre-challenge
+helm install prometheus prometheus-community/kube-prometheus-stack -f values.yaml -n sre-challenge
 
 # Step 5: Deploys Redis into cluster
 helm install my-redis bitnami/redis -n sre-challenge
 
 # Step 6: Deploys Node-api into cluster
-helm install node-api chart/
+helm install node-api chart/ -n sre-challenge
 ```
 
 ## Testing Services
