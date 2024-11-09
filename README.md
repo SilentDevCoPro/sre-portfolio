@@ -49,7 +49,7 @@ docker build -t 'image-name .
 minikube addons enable metrics-server
 ```
 
-## Service Deployment
+## Services Deployment
 ***
 **Once you have:**
 - minikube cluster running
@@ -77,7 +77,7 @@ helm install my-redis bitnami/redis -n sre-challenge
 helm install node-api chart/
 ```
 
-## Testing Using Services
+## Testing Services
 ***
 Once all services are deployed, you can now see some data by doing the following:
 
@@ -89,14 +89,14 @@ minikube service prometheus-external -n sre-challenge
 http_request_duration_seconds_bucket
 
 # This will give you access to Grafana dashboard
-minikube service grafana-external -n sre-challenge`
+minikube service grafana-external -n sre-challenge
 
 # This will give you access to the node-api endpoint use /sweet-as-bro or /metrics
 minikube service node-api-service -n sre-challenge
 
 # To test autoscaling you can install stress into a pod once you exec into it, after the stress has run for a while the
 # deploy should scale out by +1
-kubectl exec -it <pod-name> -- /bash/sh
+kubectl exec -it <pod-name> -n sre-challenge -- /bin/sh
 apt update
 apt install stress
 stress --cpu 4 --io 2 --vm 2 --vm-bytes 512M
