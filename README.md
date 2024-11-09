@@ -29,10 +29,7 @@ The following steps in Minikube/Docker are only required because this setup has 
 image registry.
 
 ``` 
-# Create the namespace
-kubectl create namespace sre-challenge
-
-# Telling Minikube to use the Docker Driver
+# Tell Minikube to use the Docker Driver
 minikube start --driver=docker
 
 # Use Docker environment from Minikube
@@ -58,22 +55,25 @@ minikube addons enable metrics-server
 
 You can create the services with the following steps:
 ```
-# Step 1: Add the Prometheus repo to helm
+# Step 1: Create the namespace
+kubectl create namespace sre-challenge
+
+# Step 2: Add the Prometheus repo to helm
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts 
 
-# Step 2: Add the Redis repo to helm
+# Step 3: Add the Redis repo to helm
 helm repo add bitnami https://charts.bitnami.com/bitnami
 
-# Step 3: check for updates
+# Step 4: check for updates
 helm repo update
 
-# Step 4: Deploy Prometheus into cluster values.yaml located in root directory of project
+# Step 5: Deploy Prometheus into cluster values.yaml located in root directory of project
 helm install prometheus prometheus-community/kube-prometheus-stack -f values.yaml -n sre-challenge
 
-# Step 5: Deploy Redis into cluster
+# Step 6: Deploy Redis into cluster
 helm install my-redis bitnami/redis -n sre-challenge
 
-# Step 6: Deploy Node-api into cluster
+# Step 7: Deploy Node-api into cluster
 helm install node-api chart/ -n sre-challenge
 ```
 
