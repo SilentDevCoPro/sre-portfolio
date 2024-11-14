@@ -3,7 +3,9 @@ const port = process.env.NODE_API_PORT;
 
 // Middleware
 const requestDuration = require('./middlewares/request-duration');
-app.use(requestDuration);
+
+// Here is where you add the routes which need to be monitored
+app.use(requestDuration(['/sweet-as-bro']));
 
 // Routes
 const sweetRoute = require('./routes/sweet-route');
@@ -11,7 +13,7 @@ const metricsRoute = require('./routes/metrics-route');
 app.use(sweetRoute);
 app.use(metricsRoute);
 
-//Server start
+// Server start
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 })

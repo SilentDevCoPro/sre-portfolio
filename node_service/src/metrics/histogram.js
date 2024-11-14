@@ -1,6 +1,6 @@
 const promClient = require('prom-client');
 
-//Creates histogram metric, histogram selected as they are excellent for response durations
+// Creates histogram metric, histogram selected as they are excellent for response durations
 const httpRequestDurationSeconds = new promClient.Histogram({
     name: 'http_request_duration_seconds',
     help: 'Duration of HTTP requests in seconds',
