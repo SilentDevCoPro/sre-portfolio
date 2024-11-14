@@ -66,8 +66,8 @@ helm repo add bitnami https://charts.bitnami.com/bitnami
 # Step 4: check for updates
 helm repo update
 
-# Step 5: Deploy Prometheus into cluster values.yaml located in root directory of project
-helm install prometheus prometheus-community/kube-prometheus-stack -f values.yaml -n sre-challenge
+# Step 5: Deploy Prometheus into cluster values.yaml located in prom_graf_service directory of project
+helm install prometheus prometheus-community/kube-prometheus-stack -f prom_graf_servicevalues.yaml -n sre-challenge
 
 # Step 6: Deploy Redis into cluster
 helm install my-redis bitnami/redis -n sre-challenge
