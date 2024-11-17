@@ -1,6 +1,5 @@
 const httpRequestDurationSeconds = require('../metrics/histogram');
 
-// Middleware factory to measure request duration for specific routes
 module.exports = (monitoredRoutes = []) => (req, res, next) => {
 
     // Check if the request path is one of the monitored routes
