@@ -66,8 +66,8 @@ helm repo add bitnami https://charts.bitnami.com/bitnami
 # Step 4: check for updates
 helm repo update
 
-# Step 5: Deploy Prometheus into cluster values.yaml located in root directory of project
-helm install prometheus prometheus-community/kube-prometheus-stack -f values.yaml -n sre-challenge
+# Step 5: Deploy Prometheus into cluster values.yaml located in prom_graf_service directory of project
+helm install prometheus prometheus-community/kube-prometheus-stack -f prom_graf_servicevalues.yaml -n sre-challenge
 
 # Step 6: Deploy Redis into cluster
 helm install my-redis bitnami/redis -n sre-challenge
@@ -101,3 +101,11 @@ apt install stress
 stress --cpu 4 --io 2 --vm 2 --vm-bytes 512M
 
 ```
+## Considerations
+***
+- Automate full deployment - While this would be a nice feature, one command builds and stands up the cluster
+the time taken to make and test this script would be more than it ever saves
+- Helm Chart - While I could template this project, I see little benefit in doing so as it is a demo it will never grow
+- Ingres should be used to only expose /sweet-as-bro, /metrics does not need to be exposed, however handy for this demo. 
+This is also the reasoning why the service monitor scrapes the load balancer,
+saves the need for additional config for the demo. In reality this should be scraping a cluster IP service
