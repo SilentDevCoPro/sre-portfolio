@@ -21,6 +21,8 @@ This demo shows:
 - Simple Nodejs API service which has a /sweet-as-bro endpoint and a /metrics endpoint
 - Prometheus to scrape /metrics endpoint, collecting the duration of the /sweet-as-bro response time
 - Redis Cache which the Node API can Hit or Miss when the /sweet-as-bro endpoint is requested
+- Auto-scaling of stress tested pods
+- Chaos Engineering scenario where 1 pod is killed every 5 minutes, this is documented
 
 
 ## Minkube/Docker
@@ -87,7 +89,7 @@ minikube service prometheus-external -n sre-challenge
 # Simple query to show the metrics being scraped on Prometheus
 http_request_duration_seconds_bucket
 
-# Access to Grafana dashboard
+# Access to Grafana dashboard2
 minikube service grafana-external -n sre-challenge
 
 # Access to the node-api endpoint use /sweet-as-bro or /metrics
@@ -101,11 +103,3 @@ apt install stress
 stress --cpu 4 --io 2 --vm 2 --vm-bytes 512M
 
 ```
-## Considerations
-***
-- Automate full deployment - While this would be a nice feature, one command builds and stands up the cluster
-the time taken to make and test this script would be more than it ever saves
-- Helm Chart - While I could template this project, I see little benefit in doing so as it is a demo it will never grow
-- Ingres should be used to only expose /sweet-as-bro, /metrics does not need to be exposed, however handy for this demo. 
-This is also the reasoning why the service monitor scrapes the load balancer,
-saves the need for additional config for the demo. In reality this should be scraping a cluster IP service
