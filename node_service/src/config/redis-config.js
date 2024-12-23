@@ -1,6 +1,5 @@
 const redis = require('redis');
 
-// Redis client connection
 const client = redis.createClient({
     socket: {
         host: process.env.REDIS_HOST,
@@ -17,7 +16,6 @@ client.on('error', err => {
     global.console.log(err.message)
 });
 
-// Connect to Redis
 (async () => {
     try {
         await client.connect();
